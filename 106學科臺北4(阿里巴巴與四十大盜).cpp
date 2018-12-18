@@ -2,35 +2,40 @@
 #include <math.h>
 using namespace std;
 int main() {
-  //¿é¤J
+  //è¼¸å…¥
   int BackLoadKG, BackLoadL, things;
   cin >> BackLoadKG >> BackLoadL >> things;
-  //³Ğ¥ß®æ¤l
+  //å‰µç«‹æ ¼å­
   int rankT = pow(2, things);
   int rank[rankT][things], KG[rankT] = {0}, L[rankT] = {0}, value[rankT] = {0}, ans = 0;
-  //¿é¤J®æ
+  //è¼¸å…¥æ ¼
   int thinfo[things][3];
   for( int t = 0 ; t < things ; t ++ )
     cin >> thinfo[t][0] >> thinfo[t][1] >> thinfo[t][2];
-  //¤G
+  //äºŒ
   for( int x = 0 ; x < things ; x ++ ){
     int change = pow(2, x);
     int add = 0;
     for( int y = 0 ; y < rankT ; y ++ ){
       rank[y][x] = add;
-      if( y % change == 0 ){
+      if( (y + 1) % change == 0 ){
       	add = (add == 0) ? 1 : 0;
 	  }
     }
   }
+  //æ¸¬è©¦å€ 
+//  cout << "\n=========Test zone\n";
 //  for( int x = 0 ; x < rankT ; x ++ ){
 //    for( int y = 0 ; y < things ; y ++ ){
 //      cout << rank[x][y] << " ";
 //    }
 //    cout << endl;
 //  }
+//  cout << "=========Test zone\n";
+
+
   
-  //­pºâ®e¶q
+  //è¨ˆç®—å®¹é‡
   for( int t = 0 ; t < rankT ; t ++){
     for( int t2 = 0 ; t2 < things ; t2 ++ ){
       if (rank[t][t2] == 1){
@@ -40,13 +45,13 @@ int main() {
       }
     }
   }
-  //§PÂ_µ²ªG
+  //åˆ¤æ–·çµæœ
   for( int t = 0 ; t < rankT ; t ++ ){
     if( KG[t] <= BackLoadKG && L[t] <= BackLoadL && value[t] > ans ){
       ans = value[t];
     }
   }
-  //¿é¥X
+  //è¼¸å‡º
   cout << ans;
   system("Pause");
   return 0;
